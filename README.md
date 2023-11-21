@@ -25,3 +25,9 @@ Usage
 
 Open index.html
 MIT
+
+
+
+link for blueprint :
+
+https://whimsical.com/examples-and-inspiration-Eyejx8xjiyygdRMVQXdYeX
