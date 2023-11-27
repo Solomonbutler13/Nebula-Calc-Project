@@ -12,21 +12,23 @@
     justify-content:flex-start;
     align-items:center ;
     margin: 40px;
-    width: 66vw;
+    width: 33vw;
     height: 70vh;
     border-radius: 15px ;
-    background-color: tan;
-    border: 4px solid blue;
+    background-color: rgb(109, 19, 19);
+    border: 4px solid rgb(255, 174, 0);
+    position: static;
 }
 
 .calculator form input{
     display: flex;
+    align-items: center;
     outline:0;
     width:70px;
     height: 60px;
     border-radius: 10px;
     margin: 10px;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 form .display {
@@ -38,9 +40,9 @@ form .display {
 
 form .display input{
     flex: 1;
-    width: 60vw;
+    width: 40vw;
     height: 15vh;
-    border: 4px solid blue;
+    border: 5px solid rgb(28, 129, 40);
     border-radius: 300px;
     background-color: rgb(109, 112, 112);
      text-align:right;
@@ -48,18 +50,19 @@ form .display input{
 
 .operations{
     display:flex; 
-  row-gap: .6px;
-  column-gap: 60px;
-  justify-content: center;
-  align-items: center;
+    flex-wrap: wrap;
+     justify-content:center;
+    align-items: center;
+    p
     width: 60vw;
-    height: 5vh;
-    border: 2px solid blue;
-    margin: 30px 0 30px 0;
+    height: 8vh;
+    border: .2px soloid color ;
+    margin: 10px 0 30px 0;
 }
 
-.mainbuttons{
+.buttons{
 display: flex;
 align-items: center;
 justify-content: center;
+position: static;
 }
