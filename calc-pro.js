@@ -10,13 +10,10 @@ let step = 0
 let results = 0
 
 const numArray= []
+const secondNumArray= []
 
-const display = document.getElementById('display')
+let display = document.getElementByid('display')
 
 function getNumber (num) {
-    if (step === 0 || step === 1){
-        numArray.push(num)
-        step = 1
-        firstNumber = numArray.joint('')
-        display.value = firstNumber
-    }
+    display. value = num
+}
