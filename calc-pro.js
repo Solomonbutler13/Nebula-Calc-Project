@@ -1,19 +1,22 @@
-// 1. press one number - save it
-// 2. press operation - save it
-// 3. press second numbber - save second number 
-// 4. press equal sign - make calculation
 
-let firstNumber 
-let secondNumber
-let operation
-let step = 0
-let results = 0
 
-const numArray= []
-const secondNumArray= []
 
-let display = document.getElementByid('display')
 
-function getNumber (num) {
-    display. value = num
-}
+
+let screen = document.getElementById('display');
+let buttons = document.querySelectorAll('button');
+let clear = document.querySelector('.clearDisplay');
+let equal = document.querySelector('.calculateEquals');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+        // finding pressed button , run function if event selected
+        let value = e.target.dataset.num;
+        console.log(e.target.dataset)
+        screen.textContent += value;
+    })
+})
+
+ clear .addEventListener ('click', function (e){
+    screen.textContent = "";
+ })
