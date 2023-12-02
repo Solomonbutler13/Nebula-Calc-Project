@@ -3,6 +3,7 @@ let numberButtons = document.querySelectorAll('.number-btn');
 let operationButtons = document.querySelectorAll('.operation-btn');
 let clear = document.querySelector('.clearDisplay');
 let equal = document.querySelector('.calculateEquals');
+let decimal = document.querySelector('.decimal-btn');
 let result = null;
 let haveDot = false;
 let firstNum = null;
@@ -30,6 +31,8 @@ clear.addEventListener('click', function (e) {
 });
 
 equal.addEventListener('click', calculateResult);
+
+decimal.addEventListener('click', handleDecimal);
 
 function reset() {
     result = null;
@@ -60,21 +63,20 @@ function handleOperation(operator) {
         calculateResult();
         operation = operator;
         step = 1;
-        haveDot = false; // Reset the decimal point flag
+        haveDot = false; 
     }
 }
 
 function handleDecimal() {
-    if (!haveDot) {
+    if (!screen.textContent.includes('.')) {
         screen.textContent += '.';
-        haveDot = true;
     }
 }
 
 function calculateResult() {
     if (operation !== null) {
         secondNum = parseFloat(screen.textContent);
-
+// convert following block to a 'switch' statement 
         if (operation === '+') {
             result = firstNum + secondNum;
         } else if (operation === '-') {
