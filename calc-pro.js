@@ -1,53 +1,36 @@
 let screen = document.getElementById('display');
-let buttons = document.querySelectorAll('button');
+let numberButtons = document.querySelectorAll('.number-btn');
+let operationButtons = document.querySelectorAll('.operation-btn');
 let clear = document.querySelector('.clearDisplay');
 let equal = document.querySelector('.calculateEquals');
 let result = null;
 let haveDot = false;
-let firstNum = null
-let secondNum = null
+let firstNum = null;
+let secondNum = null;
 let step = 0;
-let operation = null
+let operation = null;
 
-
-//Event Listeners:
-
-buttons.forEach((button) => {
+numberButtons.forEach((button) => {
     button.addEventListener('click', function (e) {
-        // finding pressed button , run function if event selected
         let value = e.target.dataset.num;
-        screen.textContent += value;
-        console.log(e.target.dataset)
-    })
-})
+        handleNumericInput(value);
+    });
+});
+
+operationButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+        let value = e.target.dataset.num;
+        handleOperation(value);
+    });
+});
 
 clear.addEventListener('click', function (e) {
     screen.textContent = "";
     reset();
 });
-//clear and reset display
-
 
 equal.addEventListener('click', calculateResult);
-// calls calculateResults when clicked
 
-
-buttons.foreach((button) => {
-    buttons.addEventListener('click', function (e) {
-        let value = e.target.dataset.num;
-        // call appropriate fuction based on buttons/ data set clicked (handle num,deci, or input)
-        if (value >= '0' && value <= '9') {
-            handleNumericInput(value);
-
-        } else if (value === '.') {
-            handleDecimal();
-        } else {
-            handleOperation(value);
-        }
-    });
-});
-
-//Functions
 function reset() {
     result = null;
     firstNum = null;
@@ -56,7 +39,6 @@ function reset() {
     haveDot = false;
     step = 0;
 }
-//initial state
 
 function handleNumericInput(value) {
     if (step === 1) {
@@ -64,43 +46,52 @@ function handleNumericInput(value) {
         step = 0;
     }
     if (!(screen.textContent === '0' && value === '0')) {
-        screen.textCent += value;
+        screen.textContent += value;
     }
 }
-// adds value to current value to update display currently
 
+function handleOperation(operator) {
+    if (firstNum === null) {
+        firstNum = parseFloat(screen.textContent);
+        operation = operator;
+        step = 1;
+    } else {
+        secondNum = parseFloat(screen.textContent);
+        calculateResult();
+        operation = operator;
+        step = 1;
+        haveDot = false; // Reset the decimal point flag
+    }
+}
 
 function handleDecimal() {
     if (!haveDot) {
         screen.textContent += '.';
-        haveDot + true;
+        haveDot = true;
     }
 }
-//ensuring only one decimal
 
+function calculateResult() {
+    if (operation !== null) {
+        secondNum = parseFloat(screen.textContent);
 
-//Calculates result based on the stored operation
-
-let calculateResult = () => {
-    if (operation === '+') {
-        console.log(firstNum, secondNum)
-        result = firstNum + secondNum;
-    } else if (operation === '-') {
-        console.log(firstNum, secondNum)
-        result = firstNum - secondNum;
-    } else if (operation === '*') {
-        console.log(firstNum, secondNum)
-        result = firstNum * secondNum;
-    } else if (operation === '/') {
-        if (secondNum !== 0) {
-            console.log(firstNum, secondNum)
-            result = firstNum / secondNum;
-        } else {
-            result = 'Error'; // Division by zero
+        if (operation === '+') {
+            result = firstNum + secondNum;
+        } else if (operation === '-') {
+            result = firstNum - secondNum;
+        } else if (operation === '*') {
+            result = firstNum * secondNum;
+        } else if (operation === '/') {
+            if (secondNum !== 0) {
+                result = firstNum / secondNum;
+            } else {
+                result = 'Error'; // Division by zero
+            }
         }
+
+        screen.textContent = result;
+        reset();
     }
+}
 
-    // Update the calculator display with the result
-    console.log(result)
-};
-
+reset();
