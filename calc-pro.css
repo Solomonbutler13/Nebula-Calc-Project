@@ -11,6 +11,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("project-images/istockphoto-185682884-640x640.jpg") ;
+    background-size: cover;
 }
 
 .calculator {
